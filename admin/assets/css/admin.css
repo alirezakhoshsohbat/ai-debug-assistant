@@ -386,3 +386,468 @@
     display: inline-block;
     margin-right: 10px;
 }
+
+
+/* =============================================
+   Settings Page — Professional Design
+   ============================================= */
+
+/* ── Header ── */
+
+.aida-settings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    color: #f8fafc;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.15);
+}
+
+.aida-settings-header-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.aida-settings-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #60a5fa;
+    flex-shrink: 0;
+}
+
+.aida-settings-header h1 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    line-height: 1.3;
+}
+
+.aida-settings-subtitle {
+    color: #94a3b8;
+    font-size: 13px;
+    margin: 4px 0 0;
+    line-height: 1.4;
+}
+
+.aida-settings-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.aida-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: background 0.3s;
+}
+
+.aida-status-dot--inactive { background: #64748b; }
+.aida-status-dot--success { background: #22c55e; box-shadow: 0 0 6px rgba(34, 197, 94, 0.5); }
+.aida-status-dot--error { background: #ef4444; box-shadow: 0 0 6px rgba(239, 68, 68, 0.5); }
+.aida-status-dot--loading { background: #f59e0b; animation: aida-pulse 1s infinite; }
+
+@keyframes aida-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ── Grid ── */
+
+.aida-settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+@media (max-width: 960px) {
+    .aida-settings-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Sections ── */
+
+.aida-settings-section {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s;
+}
+
+.aida-settings-section:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.aida-section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.aida-section-icon {
+    width: 40px;
+    height: 40px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0f172a;
+    flex-shrink: 0;
+}
+
+.aida-section-header h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 2px;
+    padding: 0;
+}
+
+.aida-section-header p {
+    font-size: 12px;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ── Fields ── */
+
+.aida-field-group {
+    padding: 16px 24px 20px;
+}
+
+.aida-field {
+    margin-bottom: 18px;
+}
+
+.aida-field:last-child {
+    margin-bottom: 0;
+}
+
+.aida-field-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 6px;
+    cursor: default;
+}
+
+.aida-field-label svg {
+    color: #64748b;
+    flex-shrink: 0;
+}
+
+.aida-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.aida-input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 13px;
+    color: #1e293b;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: all 0.2s;
+    box-shadow: none;
+    line-height: 1.5;
+    box-sizing: border-box;
+}
+
+.aida-input:focus {
+    background: #fff;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+    outline: none;
+}
+
+.aida-input::placeholder {
+    color: #94a3b8;
+}
+
+.aida-input-wrapper .aida-input {
+    padding-left: 38px;
+}
+
+.aida-input-toggle {
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    color: #94a3b8;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, background 0.2s;
+}
+
+.aida-input-toggle:hover {
+    color: #475569;
+    background: #f1f5f9;
+}
+
+.aida-field-desc {
+    font-size: 12px;
+    color: #94a3b8;
+    margin: 5px 0 0;
+    line-height: 1.5;
+}
+
+/* ── Toggle Switch ── */
+
+.aida-field--toggle {
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+}
+
+.aida-field--toggle:hover {
+    border-color: #e2e8f0;
+}
+
+.aida-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.aida-toggle-row .aida-field-label {
+    margin-bottom: 2px;
+}
+
+.aida-toggle-row .aida-field-desc {
+    margin-top: 2px;
+}
+
+.aida-toggle {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.aida-toggle input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.aida-toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: #cbd5e1;
+    border-radius: 24px;
+    transition: background 0.25s;
+}
+
+.aida-toggle-slider::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.25s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.aida-toggle input:checked + .aida-toggle-slider {
+    background: #22c55e;
+}
+
+.aida-toggle input:checked + .aida-toggle-slider::before {
+    transform: translateX(-20px);
+}
+
+.aida-toggle input:focus-visible + .aida-toggle-slider {
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+}
+
+.aida-toggle input:disabled + .aida-toggle-slider {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.aida-toggle[data-tooltip] {
+    position: relative;
+}
+
+.aida-toggle[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(50%);
+    background: #1e293b;
+    color: #f8fafc;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+/* ── Alert ── */
+
+.aida-field-alert {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #991b1b;
+    line-height: 1.4;
+}
+
+/* ── Section Action ── */
+
+.aida-section-action {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 24px 20px;
+}
+
+.aida-connection-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* ── Buttons ── */
+
+.aida-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+.aida-btn--primary {
+    background: #0f172a;
+    color: #fff;
+}
+
+.aida-btn--primary:hover {
+    background: #1e293b;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+}
+
+.aida-btn--primary:focus {
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.15);
+    outline: none;
+}
+
+.aida-btn--primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.aida-btn--outline {
+    background: transparent;
+    color: #1e293b;
+    border: 1px solid #e2e8f0;
+}
+
+.aida-btn--outline:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.aida-btn--outline:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+    outline: none;
+}
+
+.aida-btn--outline:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ── Footer ── */
+
+.aida-settings-footer {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 4px;
+}
+
+.aida-settings-form .submit {
+    display: none;
+}
+
+/* ── Connection Status ── */
+
+.aida-connection-status--success { color: #16a34a; }
+.aida-connection-status--error { color: #dc2626; }
+
+/* ── Loading Spinner ── */
+
+.aida-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #e2e8f0;
+    border-top-color: #0f172a;
+    border-radius: 50%;
+    animation: aida-spin 0.6s linear infinite;
+}
+
+@keyframes aida-spin {
+    to { transform: rotate(360deg); }
+}

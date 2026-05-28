@@ -142,21 +142,40 @@ jQuery(document).ready(function($) {
         $('#tab-' + tabId).addClass('active');
     });
 
+    // Toggle API Key Visibility
+    $('#aida-toggle-api-key').on('click', function() {
+        var $input = $('#aida_api_key');
+        var type = $input.attr('type') === 'password' ? 'text' : 'password';
+        $input.attr('type', type);
+        $(this).toggleClass('aida-input-toggle--visible');
+    });
+
     // Test API Connection
     $('#aida-test-connection').on('click', function() {
         var $btn = $(this);
         var $status = $('#aida-connection-status');
+        var $dot = $status.find('.aida-status-dot');
+        var $text = $status.find('.aida-status-text');
+        var $globalStatus = $('#aida-global-status');
+        var $globalDot = $globalStatus.find('.aida-status-dot');
+        var $globalText = $globalStatus.find('span:last');
         var apiKey = $('input[name="aida_api_key"]').val();
         var baseUrl = $('input[name="aida_base_url"]').val();
         var model = $('input[name="aida_model"]').val();
 
         if (!apiKey) {
-            $status.text('❌ لطفا ابتدا کلید API را وارد کنید.').css('color', '#d63638');
+            $dot.removeClass('aida-status-dot--success aida-status-dot--loading aida-status-dot--inactive').addClass('aida-status-dot--error');
+            $text.text('لطفا ابتدا کلید API را وارد کنید.');
+            $status.addClass('aida-connection-status--error');
             return;
         }
 
         $btn.prop('disabled', true);
-        $status.text('در حال بررسی...').css('color', '#646970');
+        $btn.html('<span class="aida-spinner"></span><span>در حال بررسی...</span>');
+
+        $dot.removeClass('aida-status-dot--success aida-status-dot--error aida-status-dot--inactive').addClass('aida-status-dot--loading');
+        $text.text('در حال بررسی اتصال...');
+        $status.removeClass('aida-connection-status--success aida-connection-status--error');
 
         $.ajax({
             url: aida_ajax.ajax_url,
@@ -170,15 +189,24 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response.success) {
-                    $status.text('✅ ' + response.data).css('color', '#46b450');
+                    $dot.removeClass('aida-status-dot--loading aida-status-dot--error aida-status-dot--inactive').addClass('aida-status-dot--success');
+                    $text.text('اتصال برقرار شد');
+                    $status.addClass('aida-connection-status--success');
+
+                    $globalDot.removeClass('aida-status-dot--inactive aida-status-dot--error aida-status-dot--loading').addClass('aida-status-dot--success');
+                    $globalText.text('متصل');
                 } else {
-                    $status.text('❌ خطا: ' + response.data).css('color', '#d63638');
+                    $dot.removeClass('aida-status-dot--loading aida-status-dot--success aida-status-dot--inactive').addClass('aida-status-dot--error');
+                    $text.text('خطا: ' + response.data);
+                    $status.addClass('aida-connection-status--error');
+
+                    $globalDot.removeClass('aida-status-dot--inactive aida-status-dot--success aida-status-dot--loading').addClass('aida-status-dot--error');
+                    $globalText.text('خطا');
                 }
             },
             error: function(xhr, status, error) {
                 var errorMsg = 'خطا در برقراری ارتباط با سرور.';
-                
-                // Try to extract message from WordPress JSON response
+
                 if (xhr.responseText) {
                     try {
                         var json = JSON.parse(xhr.responseText);
@@ -188,20 +216,25 @@ jQuery(document).ready(function($) {
                             errorMsg = 'پاسخ نامعتبر از سرور: ' + xhr.responseText.substring(0, 100);
                         }
                     } catch(e) {
-                        // Not JSON, show status text or part of response
                         errorMsg = 'خطای سرور (' + xhr.status + '): ' + (error || status);
                         if (xhr.responseText && xhr.status === 500) {
                             errorMsg += ' - لطفا لاگ‌های سرور را بررسی کنید.';
                         }
                     }
                 } else if (status === 'timeout') {
-                    errorMsg = 'زمان درخواست به پایان رسید (Timeout). لطفا سرعت اینترنت یا آدرس API را بررسی کنید.';
+                    errorMsg = 'زمان درخواست به پایان رسید (Timeout).';
                 }
 
-                $status.text('❌ ' + errorMsg).css('color', '#d63638');
+                $dot.removeClass('aida-status-dot--loading aida-status-dot--success aida-status-dot--inactive').addClass('aida-status-dot--error');
+                $text.text(errorMsg);
+                $status.addClass('aida-connection-status--error');
+
+                $globalDot.removeClass('aida-status-dot--inactive aida-status-dot--success aida-status-dot--loading').addClass('aida-status-dot--error');
+                $globalText.text('خطا');
             },
             complete: function() {
                 $btn.prop('disabled', false);
+                $btn.html('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>بررسی اتصال به API</span>');
             }
         });
     });
