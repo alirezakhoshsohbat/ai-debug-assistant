@@ -1,10 +1,11 @@
 <?php
 /**
- * Plugin Name: دستیار هوشمند عیب‌یاب وردپرس
- * Plugin URI: https://example.com/ai-debug-assistant
+ * Plugin Name:  نجات - دستیار هوشمند عیب‌یاب وردپرس
+ * Plugin URI: https://alirezakhoshsohbat.ir/Nejat
  * Description: یک دستیار هوشمند برای عیب‌یابی و رفع مشکلات فنی سایت‌های وردپرسی با استفاده از هوش مصنوعی.
  * Version: 1.0.0
- * Author: Senior WordPress Developer
+ * Author: Alireza Khoshsohbat
+ * Author URI: https://alirezakhoshsohbat.ir
  * Text Domain: ai-debug-assistant
  * Domain Path: /languages
  */

@@ -36,8 +36,8 @@ class Admin_UI {
 
 	public function add_menu_pages() {
 		add_menu_page(
-			'عیب‌یاب هوشمند',
-			'عیب‌یاب هوشمند',
+			'دستیار هوشمند نجات',
+			'دستیار هوشمند نجات',
 			'manage_options',
 			'ai-debug-assistant',
 			array( $this, 'render_main_page' ),
